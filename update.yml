@@ -22,7 +22,7 @@
 
   - name: check for CentOS minor release change
     debug:
-      msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-release`].version[]') }}"
+      msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-linux-release`].version[]') }}"
     when: ansible_distribution == "CentOS"
 
   - name: install updates
