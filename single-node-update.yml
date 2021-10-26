@@ -6,4 +6,3 @@
     yum:
       name: '*'
       state: latest
-    check_mode: yes
