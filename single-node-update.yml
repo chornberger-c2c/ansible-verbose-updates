@@ -1,0 +1,9 @@
+---
+- hosts: '{{ target }}'
+  tasks:
+
+  - name: update all packages
+    yum:
+      name: '*'
+      state: latest
+    check_mode: yes
