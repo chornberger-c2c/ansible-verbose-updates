@@ -1,0 +1,32 @@
+---
+- hosts: all
+  tasks:
+
+  - name: list packages ready to be updated
+    yum:
+      list: updates
+    register: possible_updates
+  
+  - name: display name and available version
+    debug: 
+      msg: "{{ possible_updates | json_query('results[].[name, version]') }}"
+
+  - name: display package count 
+    debug: 
+      msg: "Found {{ possible_updates.results | length }} packages ready to be updated"
+
+  - name: check for Red Hat minor release change
+    debug:
+      msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release-server`].version[]') }}"
+    when: ansible_distribution == "RedHat"
+
+  - name: check for CentOS minor release change
+    debug:
+      msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-release`].version[]') }}"
+    when: ansible_distribution == "CentOS"
+
+  - name: install updates
+    yum:
+      name: '*'
+      state: latest
+
