@@ -11,4 +11,4 @@ jobs:
       uses: ansible/ansible-lint-action@master
       with:
         targets: "update.yml"
-        args: ""
+        args: "-x E403"

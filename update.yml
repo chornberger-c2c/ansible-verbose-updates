@@ -6,7 +6,7 @@
     yum:
       list: updates
     register: possible_updates
- 
+
   - name: display name and available version
     debug:
       msg: "{{ possible_updates | json_query('results[].[name, version]') }}"
@@ -21,7 +21,7 @@
     when:
       - ansible_distribution == "RedHat"
       - ansible_distribution_major_version == '7'
-      - (possible_updates | json_query('results[?name == `redhat-release-server`].version[]') | length) > 0 
+      - (possible_updates | json_query('results[?name == `redhat-release-server`].version[]') | length) > 0
 
   - name: check for Red Hat minor release change (8.x)
     debug:
