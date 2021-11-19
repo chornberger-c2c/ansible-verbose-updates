@@ -1,3 +1,5 @@
+[![Ansible Lint](https://github.com/chornberger-c2c/ansible-verbose-updates/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/chornberger-c2c/ansible-verbose-updates/actions/workflows/ansible-lint.yml)
+
 This adds a little bit of verbosity to the yum update process on RHEL / CentOS machines via Ansible.
 
 Displays 
