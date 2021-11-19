@@ -17,17 +17,17 @@
 
   - name: check for Red Hat minor release change (7.x)
     debug:
-      msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release-server`].version[]') }}"
+      msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release-server`].version[]')  | first }}"
     when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '7'
 
   - name: check for Red Hat minor release change (8.x)
     debug:
-      msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release`].version[]') }}"
+      msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release`].version[]') | first }}"
     when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
 
   - name: check for CentOS minor release change
     debug:
-      msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-linux-release`].version[]') }}"
+      msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-linux-release`].version[]') | first }}"
     when: ansible_distribution == "CentOS"
 
   - name: install updates
