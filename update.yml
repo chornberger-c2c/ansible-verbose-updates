@@ -15,7 +15,7 @@
     debug:
       msg: "Found {{ possible_updates.results | length }} packages ready to be updated"
 
-  - name: check for Red Hat minor release change (7.x)
+  - name: check for RHEL minor release change (7.x)
     debug:
       msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release-server`].version[]')  | first }}"
     when:
@@ -23,7 +23,7 @@
       - ansible_distribution_major_version == '7'
       - (possible_updates | json_query('results[?name == `redhat-release-server`].version[]') | length) > 0
 
-  - name: check for Red Hat minor release change (8.x)
+  - name: check for RHEL minor release change (8.x)
     debug:
       msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release`].version[]') | first }}"
     when:
@@ -31,15 +31,23 @@
       - ansible_distribution_major_version == '8'
       - (possible_updates | json_query('results[?name == `redhat-release`].version[]') | length) > 0
 
-  - name: check for CentOS minor release change
+  - name: check for CentOS minor release change (7.x)
+    debug:
+      msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-release`].version[]') | first }}.{{ possible_updates | json_query('results[?name == `centos-release`].release[]') | first }}"
+    when:
+      - ansible_distribution == "CentOS"
+      - ansible_distribution_major_version == '7'
+      - (possible_updates | json_query('results[?name == `centos-release`].version[]') | length) > 0
+
+  - name: check for CentOS minor release change (8.x)
     debug:
       msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-linux-release`].version[]') | first }}"
     when:
       - ansible_distribution == "CentOS"
+      - ansible_distribution_major_version == '8'
       - (possible_updates | json_query('results[?name == `centos-linux-release`].version[]') | length) > 0
 
   - name: install updates
     yum:
       name: '*'
       state: latest
-
