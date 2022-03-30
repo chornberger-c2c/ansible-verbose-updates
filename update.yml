@@ -1,5 +1,9 @@
 ---
 - hosts: all
+  
+  vars:
+    debug: false
+    
   tasks:
 
   - name: list packages ready to be updated
@@ -7,9 +11,15 @@
       list: updates
     register: possible_updates
 
+  - name: display everything
+    debug:
+      msg: "{{ possible_updates }}"
+    when:
+      - debug
+
   - name: display name and available version
     debug:
-      msg: "{{ possible_updates | json_query('results[].[name, version]') }}"
+      msg: "{{ possible_updates | json_query('results[].[name, version]') | sort | unique }}"
 
   - name: display package count
     debug:
@@ -17,7 +27,7 @@
 
   - name: check for RHEL minor release change (7.x)
     debug:
-      msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release-server`].version[]')  | first }}"
+      msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release-server`].version[]') | last }}"
     when:
       - ansible_distribution == "RedHat"
       - ansible_distribution_major_version == '7'
@@ -25,7 +35,7 @@
 
   - name: check for RHEL minor release change (8.x)
     debug:
-      msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release`].version[]') | first }}"
+      msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release`].version[]') | last }}"
     when:
       - ansible_distribution == "RedHat"
       - ansible_distribution_major_version == '8'
@@ -39,12 +49,12 @@
       - ansible_distribution_major_version == '7'
       - (possible_updates | json_query('results[?name == `centos-release`].version[]') | length) > 0
     vars:
-      major: "{{ possible_updates | json_query('results[?name == `centos-release`].version[]') | first }}"
-      minor: "{{ possible_updates | json_query('results[?name == `centos-release`].release[]') | first }}"
+      major: "{{ possible_updates | json_query('results[?name == `centos-release`].version[]') | last }}"
+      minor: "{{ possible_updates | json_query('results[?name == `centos-release`].release[]') | last }}"
 
   - name: check for CentOS minor release change (8.x)
     debug:
-      msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-linux-release`].version[]') | first }}"
+      msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-linux-release`].version[]') | last }}"
     when:
       - ansible_distribution == "CentOS"
       - ansible_distribution_major_version == '8'
