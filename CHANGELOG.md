@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.2](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.2.1...v0.2.2) (2022-03-31)
+
+
+### Bug Fixes
+
+* do not count dublicate updates ([e67492c](https://www.github.com/chornberger-c2c/ansible-verbose-updates/commit/e67492c75d1fbe18c21f1fb635b53f80f03b2d08))
+
 ### [0.2.1](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.2.0...v0.2.1) (2022-03-30)
 
 
