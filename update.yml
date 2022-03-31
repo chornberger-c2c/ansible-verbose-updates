@@ -23,7 +23,7 @@
 
     - name: display package count
       debug:
-        msg: "Found {{ possible_updates.results | length }} packages ready to be updated"
+        msg: "Found {{ possible_updates | json_query('results[].[name]') | sort | unique | length }} packages ready to be updated"
 
     - name: check for RHEL minor release change (7.x)
       debug:
