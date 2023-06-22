@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.3.1](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.3.0...v0.3.1) (2023-06-22)
+
+
+### Bug Fixes
+
+* **gh action:** remove args from ansible linting ([ca88469](https://www.github.com/chornberger-c2c/ansible-verbose-updates/commit/ca884699f53379f7164ad8543dcb5eaa6cc9eec8))
+
 ## [0.3.0](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.2.2...v0.3.0) (2023-06-22)
 
 
