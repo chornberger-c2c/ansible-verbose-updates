@@ -10,5 +10,4 @@ jobs:
     - name: Lint Ansible Playbook
       uses: ansible/ansible-lint-action@main
       with:
-        targets: "update.yml"
-        args: "-x 403"
+        path: "update.yml"
