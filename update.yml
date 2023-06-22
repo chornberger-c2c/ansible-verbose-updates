@@ -20,27 +20,27 @@
 
     - name: Display name and available version
       ansible.builtin.debug:
-        msg: "{{ possible_updates | json_query('results[].[name, version]') | sort | unique }}"
+        msg: "{{ possible_updates | community.general.json_query('results[].[name, version]') | sort | unique }}"
 
     - name: Display package count
       ansible.builtin.debug:
-        msg: "Found {{ possible_updates | json_query('results[].[name]') | sort | unique | length }} packages ready to be updated"
+        msg: "Found {{ possible_updates | community.general.json_query('results[].[name]') | sort | unique | length }} packages ready to be updated"
 
     - name: Check for RHEL minor release change (7.x)
       ansible.builtin.debug:
-        msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release-server`].version[]') | last }}"
+        msg: "RHEL minor release will change to {{ possible_updates | community.general.json_query('results[?name == `redhat-release-server`].version[]') | last }}"
       when:
         - ansible_distribution == "RedHat"
         - ansible_distribution_major_version == '7'
-        - (possible_updates | json_query('results[?name == `redhat-release-server`].version[]') | length) > 0
+        - (possible_updates | community.general.json_query('results[?name == `redhat-release-server`].version[]') | length) > 0
 
     - name: Check for RHEL minor release change (8.x and later)
       ansible.builtin.debug:
-        msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release`].version[]') | last }}"
+        msg: "RHEL minor release will change to {{ possible_updates | community.general.json_query('results[?name == `redhat-release`].version[]') | last }}"
       when:
         - ansible_distribution == "RedHat"
         - ansible_distribution_major_version >= '8'
-        - (possible_updates | json_query('results[?name == `redhat-release`].version[]') | length) > 0
+        - (possible_updates | community.general.json_query('results[?name == `redhat-release`].version[]') | length) > 0
 
     - name: Check for CentOS minor release change (7.x)
       ansible.builtin.debug:
@@ -48,18 +48,18 @@
       when:
         - ansible_distribution == "CentOS"
         - ansible_distribution_major_version == '7'
-        - (possible_updates | json_query('results[?name == `centos-release`].version[]') | length) > 0
+        - (possible_updates | community.general.json_query('results[?name == `centos-release`].version[]') | length) > 0
       vars:
-        major: "{{ possible_updates | json_query('results[?name == `centos-release`].version[]') | last }}"
-        minor: "{{ possible_updates | json_query('results[?name == `centos-release`].release[]') | last }}"
+        major: "{{ possible_updates | community.general.json_query('results[?name == `centos-release`].version[]') | last }}"
+        minor: "{{ possible_updates | community.general.json_query('results[?name == `centos-release`].release[]') | last }}"
 
     - name: Check for CentOS minor release change (8.x)
       ansible.builtin.debug:
-        msg: "CentOS minor release will change to {{ possible_updates | json_query('results[?name == `centos-linux-release`].version[]') | last }}"
+        msg: "CentOS minor release will change to {{ possible_updates | community.general.json_query('results[?name == `centos-linux-release`].version[]') | last }}"
       when:
         - ansible_distribution == "CentOS"
         - ansible_distribution_major_version == '8'
-        - (possible_updates | json_query('results[?name == `centos-linux-release`].version[]') | length) > 0
+        - (possible_updates | community.general.json_query('results[?name == `centos-linux-release`].version[]') | length) > 0
 
     - name: Update all packages
       ansible.builtin.yum:
