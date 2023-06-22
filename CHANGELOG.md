@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.2.2...v0.3.0) (2023-06-22)
+
+
+### Features
+
+* add support for RHEL 9.x ([8705277](https://www.github.com/chornberger-c2c/ansible-verbose-updates/commit/8705277572cf89f541aa2ae7b8ee04610786d98a))
+
 ### [0.2.2](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.2.1...v0.2.2) (2022-03-31)
 
 
