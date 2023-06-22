@@ -33,12 +33,12 @@
         - ansible_distribution_major_version == '7'
         - (possible_updates | json_query('results[?name == `redhat-release-server`].version[]') | length) > 0
 
-    - name: check for RHEL minor release change (8.x)
+    - name: check for RHEL minor release change (8.x and later)
       debug:
         msg: "RHEL minor release will change to {{ possible_updates | json_query('results[?name == `redhat-release`].version[]') | last }}"
       when:
         - ansible_distribution == "RedHat"
-        - ansible_distribution_major_version == '8'
+        - ansible_distribution_major_version >= '8'
         - (possible_updates | json_query('results[?name == `redhat-release`].version[]') | length) > 0
 
     - name: check for CentOS minor release change (7.x)
