@@ -6,4 +6,4 @@ Displays
   - package names 
   - package versions
   - total amount of packages to be updated
-  - RHEL / CentOS minor release update
+  - RHEL / CentOS / AlmaLinux / Rocky Linux minor release update
