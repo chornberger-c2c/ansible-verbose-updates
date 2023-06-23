@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.4.0...v0.4.1) (2023-06-23)
+
+
+### Bug Fixes
+
+* linting ([9526a7c](https://www.github.com/chornberger-c2c/ansible-verbose-updates/commit/9526a7cacd23bb10542c716fb0bdeab9b9c0d5cc))
+
 ## [0.4.0](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.3.1...v0.4.0) (2023-06-23)
 
 
