@@ -28,7 +28,7 @@
 
     - name: Check for RHEL minor release change (7.x)
       ansible.builtin.debug:
-        msg: "RHEL minor release will change to {{ possible_updates | community.general.json_query('results[?name == `redhat-release-server`].version[]') | last }}"
+        msg: "RHEL release changes to {{ possible_updates | community.general.json_query('results[?name == `redhat-release-server`].version[]') | last }}"
       when:
         - ansible_distribution == "RedHat"
         - ansible_distribution_major_version == '7'
@@ -36,7 +36,7 @@
 
     - name: Check for RHEL minor release change (8.x and later)
       ansible.builtin.debug:
-        msg: "RHEL minor release will change to {{ possible_updates | community.general.json_query('results[?name == `redhat-release`].version[]') | last }}"
+        msg: "RHEL release changes to {{ possible_updates | community.general.json_query('results[?name == `redhat-release`].version[]') | last }}"
       when:
         - ansible_distribution == "RedHat"
         - ansible_distribution_major_version >= '8'
@@ -44,7 +44,7 @@
 
     - name: Check for CentOS minor release change (7.x)
       ansible.builtin.debug:
-        msg: "CentOS release will change to {{ major }}.{{ minor }}"
+        msg: "CentOS release changes to {{ major }}.{{ minor }}"
       when:
         - ansible_distribution == "CentOS"
         - ansible_distribution_major_version == '7'
@@ -55,7 +55,7 @@
 
     - name: Check for CentOS minor release change (8.x)
       ansible.builtin.debug:
-        msg: "CentOS minor release will change to {{ possible_updates | community.general.json_query('results[?name == `centos-linux-release`].version[]') | last }}"
+        msg: "CentOS release changes to {{ possible_updates | community.general.json_query('results[?name == `centos-linux-release`].version[]') | last }}"
       when:
         - ansible_distribution == "CentOS"
         - ansible_distribution_major_version == '8'
@@ -63,7 +63,7 @@
 
     - name: Check for AlmaLinux minor release change (8.x and later)
       ansible.builtin.debug:
-        msg: "AlmaLinux minor release will change to {{ possible_updates | community.general.json_query('results[?name == `almalinux-release`].version[]') | last }}"
+        msg: "AlmaLinux release changes to {{ possible_updates | community.general.json_query('results[?name == `almalinux-release`].version[]') | last }}"
       when:
         - ansible_distribution == "AlmaLinux"
         - ansible_distribution_major_version >= '8'
@@ -71,7 +71,7 @@
 
     - name: Check for Rocky Linux minor release change (8.x and later)
       ansible.builtin.debug:
-        msg: "Rocky Linux minor release will change to {{ possible_updates | community.general.json_query('results[?name == `rocky-release`].version[]') | last }}"
+        msg: "Rocky Linux release changes to {{ possible_updates | community.general.json_query('results[?name == `rocky-release`].version[]') | last }}"
       when:
         - ansible_distribution == "Rocky"
         - ansible_distribution_major_version >= '8'
