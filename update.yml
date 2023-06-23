@@ -61,6 +61,22 @@
         - ansible_distribution_major_version == '8'
         - (possible_updates | community.general.json_query('results[?name == `centos-linux-release`].version[]') | length) > 0
 
+    - name: Check for AlmaLinux minor release change (8.x and later)
+      ansible.builtin.debug:
+        msg: "AlmaLinux minor release will change to {{ possible_updates | community.general.json_query('results[?name == `almalinux-release`].version[]') | last }}"
+      when:
+        - ansible_distribution == "AlmaLinux"
+        - ansible_distribution_major_version >= '8'
+        - (possible_updates | community.general.json_query('results[?name == `almalinux-release`].version[]') | length) > 0
+
+    - name: Check for Rocky Linux minor release change (8.x and later)
+      ansible.builtin.debug:
+        msg: "Rocky Linux minor release will change to {{ possible_updates | community.general.json_query('results[?name == `rocky-release`].version[]') | last }}"
+      when:
+        - ansible_distribution == "Rocky"
+        - ansible_distribution_major_version >= '8'
+        - (possible_updates | community.general.json_query('results[?name == `rocky-release`].version[]') | length) > 0
+
     - name: Update all packages
       ansible.builtin.yum:
         name: '*'
