@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.4.1...v0.5.0) (2023-06-23)
+
+
+### Features
+
+* add CentOS Stream ([d19dca1](https://www.github.com/chornberger-c2c/ansible-verbose-updates/commit/d19dca1401b3a1b36505d7ab81c3d8c5173d1750))
+
 ### [0.4.1](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.4.0...v0.4.1) (2023-06-23)
 
 
