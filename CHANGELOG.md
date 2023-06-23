@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.3.1...v0.4.0) (2023-06-23)
+
+
+### Features
+
+* add AlmaLinux and Rocky Linux releae checks ([11f783c](https://www.github.com/chornberger-c2c/ansible-verbose-updates/commit/11f783c28478b03d2f674dd6873bd583931425aa))
+
 ### [0.3.1](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.3.0...v0.3.1) (2023-06-22)
 
 
