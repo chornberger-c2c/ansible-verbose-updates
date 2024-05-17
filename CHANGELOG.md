@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.5.0...v0.6.0) (2024-05-17)
+
+
+### Features
+
+* add requirements.yml ([65f62f5](https://www.github.com/chornberger-c2c/ansible-verbose-updates/commit/65f62f5ebc0b5cfea1d6c25e2815be6c0e2ff035))
+
 ## [0.5.0](https://www.github.com/chornberger-c2c/ansible-verbose-updates/compare/v0.4.1...v0.5.0) (2023-06-23)
 
 
